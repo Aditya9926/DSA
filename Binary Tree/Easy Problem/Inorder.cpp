@@ -18,13 +18,10 @@ void printInorder(TreeNode* node)
     if (node == nullptr)
         return;
 
-    // First recur on left subtree
     printInorder(node->left);
 
-    // Now deal with the node
     cout << node->val << " ";
 
-    // Then recur on right subtree
     printInorder(node->right);
 }
 
@@ -56,29 +53,22 @@ vector<int> inOrder(TreeNode* root) {
     while (curr != nullptr) {
         if (curr->left == nullptr) {
           
-            // If no left child, visit this node 
-            // and go right
             res.push_back(curr->val);
             curr = curr->right;
         }
         else {
           
-            // Find the inorder predecessor of curr
             TreeNode* prev = curr->left;
             while (prev->right != nullptr && prev->right != curr) {
                 prev = prev->right;
             }
 
-            // Make curr the right child of its 
-            // inorder predecessor
             if (prev->right == nullptr) {
                 prev->right = curr;
                 curr = curr->left;
             } 
             else {
               
-                // Revert the changes made in 
-                // the tree structure
                 prev->right = nullptr;
                 res.push_back(curr->val);
                 curr = curr->right;
