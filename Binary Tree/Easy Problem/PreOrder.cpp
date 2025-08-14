@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <stack>
 using namespace std;
 
 struct TreeNode {
@@ -10,7 +12,7 @@ struct TreeNode {
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
-
+// Preorder Traversal using recursion
 void printPreorder(TreeNode* node) {
     if(node == NULL)
         return;
@@ -19,6 +21,37 @@ void printPreorder(TreeNode* node) {
     printPreorder(node->right);
     return;
 }
+
+// Preorder Traversal without recursion
+class Solution {
+public:
+    vector<int> preorderTraversal(TreeNode* root) {
+        vector<int> res;
+
+    while (root != nullptr) {  
+        if (root->left == nullptr) {  
+            res.push_back(root->val);
+            root = root->right;
+        } else {
+            TreeNode* curr = root->left;
+            while (curr->right != nullptr && curr->right != root) {  
+                curr = curr->right;
+            }
+
+            if (curr->right == root) {
+                curr->right = nullptr;  
+                root = root->right;
+            } else {
+                res.push_back(root->val);
+                curr->right = root;
+                root = root->left;
+            }
+        }
+    }
+
+    return res;
+    }
+};
 
 int main() {
     TreeNode* root = new TreeNode(1);
@@ -34,5 +67,11 @@ int main() {
     cout << "Preorder Traversal using recursion: ";
     printPreorder(root);
     cout << endl;
+    cout << "Preorder Traversal without recursion: ";
+    Solution sol;
+    vector<int> preorderResult = sol.preorderTraversal(root);
+    for (int data : preorderResult) {
+        cout << data << " ";
+    }
     return 0;
 };
