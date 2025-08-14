@@ -1,4 +1,6 @@
 #include <iostream>
+#include <vector>
+#include <stack>
 using namespace std;
 
 struct TreeNode {
@@ -10,6 +12,7 @@ struct TreeNode {
      TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}
 };
 
+// Postorder travelsal with recursion
 void printPostorder(TreeNode* node) {
     if(node == NULL)
         return;
@@ -20,6 +23,33 @@ void printPostorder(TreeNode* node) {
     
     cout << node->val << " ";
 }
+
+// Postorder travelsal without recursion
+class Solution {
+public:
+    vector<int> postorderTraversal(TreeNode* root) {
+        vector<int> res;
+    stack<TreeNode*> st;
+    while (true) {
+        while (root) {
+            st.push(root);
+            st.push(root);
+            root = root->left;
+        }
+        if (st.empty())
+            return res;
+        root = st.top();
+        st.pop();
+        if (!st.empty() && st.top() == root)
+            root = root->right;
+        else {
+            res.push_back(root->val);
+            root = nullptr;
+        }
+    }
+    return res;
+    }
+};
 
 int main() {
     TreeNode* root = new TreeNode(1);
@@ -35,6 +65,11 @@ int main() {
     cout << "Postorder Traversal using recursion: ";
     printPostorder(root);
     cout << endl;
-    
+    cout << "Postorder Traversal without recursion: ";
+    Solution sol;
+    vector<int> result = sol.postorderTraversal(root);
+    for (int val : result) {
+        cout << val << " ";
+    }
     return 0;
 }
