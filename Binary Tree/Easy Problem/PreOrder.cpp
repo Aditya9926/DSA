@@ -27,26 +27,21 @@ class Solution {
 public:
     vector<int> preorderTraversal(TreeNode* root) {
         vector<int> res;
+    if (root == nullptr)
+        return res;
 
-    while (root != nullptr) {  
-        if (root->left == nullptr) {  
-            res.push_back(root->val);
-            root = root->right;
-        } else {
-            TreeNode* curr = root->left;
-            while (curr->right != nullptr && curr->right != root) {  
-                curr = curr->right;
-            }
+    stack<TreeNode*> s;
+    s.push(root);
 
-            if (curr->right == root) {
-                curr->right = nullptr;  
-                root = root->right;
-            } else {
-                res.push_back(root->val);
-                curr->right = root;
-                root = root->left;
-            }
-        }
+    while (!s.empty()) {
+        TreeNode* curr = s.top();
+        s.pop();
+        res.push_back(curr->val);
+
+        if (curr->right != nullptr)
+            s.push(curr->right);
+        if (curr->left != nullptr)
+            s.push(curr->left);
     }
 
     return res;
