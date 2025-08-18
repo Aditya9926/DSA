@@ -6,15 +6,16 @@ void min(int arr[]){
     for(int i = 0; i < 5; i++){
         if (minu > arr[i]){
             minu = arr[i];
+            int index = i;
+            cout << "Minimum element found at index: " << index << "\n";
         }
+        
     }
     cout<< "Minimum element is: " << minu <<"\n";
 }
 
 int main(){
-    int arr1[5] = { 30, 10, 20, 40, 50 };    
-    int arr2[5] = { 5, 15, 25, 35, 45};   
-    min(arr1);    
-    min(arr2); 
+    int arr1[5] = { 30, 10, 20, 40, 50 };       
+    min(arr1); 
     return 0;
 }
