@@ -6,14 +6,16 @@ void max(int arr[]){
     for(int i =0 ; i < 5 ; i++){
         if(maxi < arr[i]){
             maxi = arr[i];
+            int index = i;
+            cout << "Maximum element found at index: " << index << "\n";
         }
     }
     cout << "Maximum element is : " << maxi <<endl ;
 }
 int main(){
-     int arr1[5] = { 25, 10, 54, 15, 40 };    
-    int arr2[5] = { 12, 23, 44, 67, 54 };    
-    max(arr1);  
-    max(arr2);
+    int arr[5];
+    cout << "Array elements are: ";
+    cin >> arr[0] >> arr[1] >> arr[2] >> arr[3] >> arr[4];
+    max(arr);
     return 0;
 }
