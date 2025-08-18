@@ -15,7 +15,9 @@ void min(int arr[]){
 }
 
 int main(){
-    int arr1[5] = { 30, 10, 20, 40, 50 };       
-    min(arr1); 
+    int arr[5];
+    cin >> arr[0] >> arr[1] >> arr[2] >> arr[3] >> arr[4];
+    cout << "Array elements are: ";      
+    min(arr); 
     return 0;
 }
