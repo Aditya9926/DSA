@@ -3,13 +3,14 @@ using namespace std;
 
 void min(int arr[]){
     int minu = arr[0];
+    int index = 0;
     for(int i = 0; i < 5; i++){
         if (minu > arr[i]){
             minu = arr[i];
-            int index = i;
-            cout << "Minimum element found at index: " << index << "\n";
+            index = i;
         }
     }
+    cout << "Minimum element found at index: " << index << "\n";
     cout<< "Minimum element is: " << minu <<"\n";
 }
 
