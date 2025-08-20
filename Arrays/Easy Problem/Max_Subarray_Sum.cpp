@@ -30,7 +30,7 @@ int Kadane(int arr[], int n) {
 }
 
 int main() {
-    int arr[] = {-2, 1, -3, 4, -1, 2, 1, -5, 4};
+    int arr[] = {3, -4, 5, 4, -1, 7, -8};
     int n = sizeof(arr) / sizeof(arr[0]);
     
     cout << "Max Subarray Sum using Brute Force: " << Brute(arr, n) << endl;
