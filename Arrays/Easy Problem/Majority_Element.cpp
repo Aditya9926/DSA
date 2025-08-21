@@ -16,7 +16,57 @@ int findMajorityElement(const vector<int>& nums) {
             return nums[i];
         }
     }
-    return -1; // No majority element found
+    return -1; 
+}
+
+// Function to find Majority Element using optimal approach
+int findMajorityElementOptimal(const vector<int>& nums) {
+    int candidate = 0, count = 0;
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
+            count = 1;
+        } else if (num == candidate) {
+            count++;
+        } else {
+            count--;
+        }
+    }
+
+    // Verify if the candidate is actually the majority element
+    count = 0;
+    for (int num : nums) {
+        if (num == candidate) {
+            count++;
+        }
+    }
+    
+    return (count > nums.size() / 2) ? candidate : -1;
+}
+
+// Function to find Majority Element using Boyer-Moore Voting Algorithm
+int findMajorityElementBoyerMoore(const vector<int>& nums) {
+    int candidate = 0, count = 0;
+    for (int num : nums) {
+        if (count == 0) {
+            candidate = num;
+            count = 1;
+        } else if (num == candidate) {
+            count++;
+        } else {
+            count--;
+        }
+    }
+    
+    // Verify if the candidate is actually the majority element
+    count = 0;
+    for (int num : nums) {
+        if (num == candidate) {
+            count++;
+        }
+    }
+    
+    return (count > nums.size() / 2) ? candidate : -1;
 }
 
 int main() {
