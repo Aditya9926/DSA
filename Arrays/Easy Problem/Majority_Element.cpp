@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 using namespace std;
 
 // Function to find Majority Element using Brute Force
@@ -19,29 +20,20 @@ int findMajorityElement(const vector<int>& nums) {
     return -1; 
 }
 
-// Function to find Majority Element using optimal approach
-int findMajorityElementOptimal(const vector<int>& nums) {
-    int candidate = 0, count = 0;
-    for (int num : nums) {
-        if (count == 0) {
-            candidate = num;
-            count = 1;
-        } else if (num == candidate) {
+// Function to find Majority Element using sorting
+int findMajorityElementSorting(vector<int>& nums) {
+    sort(nums.begin(), nums.end());
+    int count = 1, majorityCount = nums.size() / 2;
+    for (int i = 1; i < nums.size(); ++i) {
+        if (nums[i] == nums[i - 1]) {
             count++;
+            if (count > majorityCount) {
+                return nums[i];
+            }
         } else {
-            count--;
+            count = 1;
         }
     }
-
-    // Verify if the candidate is actually the majority element
-    count = 0;
-    for (int num : nums) {
-        if (num == candidate) {
-            count++;
-        }
-    }
-    
-    return (count > nums.size() / 2) ? candidate : -1;
 }
 
 // Function to find Majority Element using Boyer-Moore Voting Algorithm
@@ -71,11 +63,36 @@ int findMajorityElementBoyerMoore(const vector<int>& nums) {
 
 int main() {
     vector<int> nums = {3, 3, 4, 2, 4, 4, 2, 4, 4};
+
     int majorityElement = findMajorityElement(nums);
+
     if (majorityElement != -1) {
         cout << "Majority Element: " << majorityElement << endl;
-    } else {
+    } 
+    
+    else {
         cout << "No Majority Element found." << endl;
     }
+
+    majorityElement = findMajorityElementSorting(nums);
+
+    if (majorityElement != -1) {
+        cout << "Majority Element (Sorting): " << majorityElement << endl;
+    } 
+    
+    else {
+        cout << "No Majority Element found using sorting." << endl;
+    }
+
+    majorityElement = findMajorityElementBoyerMoore(nums);
+
+    if (majorityElement != -1) {
+        cout << "Majority Element (Boyer-Moore): " << majorityElement << endl;
+    } 
+    
+    else {
+        cout << "No Majority Element found using Boyer-Moore." << endl;
+    }
+
     return 0;
 }
