@@ -1,26 +1,34 @@
 #include <iostream>
 using namespace std;
-class Solution {
+class Solution
+{
 public:
-    double myPow(double x, int n) {
-        if (n == 0) return 1;
-        if (n < 0) {
+    double myPow(double x, int n)
+    {
+        if (n == 0)
+            return 1;
+        if (n < 0)
+        {
             x = 1 / x;
             n = -n;
         }
         double half = myPow(x, n / 2);
-        if (n % 2 == 0) {
+        if (n % 2 == 0)
+        {
             return half * half;
-        } else {
+        }
+        else
+        {
             return half * half * x;
         }
     }
 };
 
-int main() {
+int main()
+{
     Solution sol;
-    double x = 2.1;
-    int n = 3;
+    double x = 2;
+    int n = 10;
     cout << "Result: " << sol.myPow(x, n) << endl;
     return 0;
 }
