@@ -16,19 +16,21 @@ void selectionSort(int arr[], int n)
 
 void printArray(int arr[], int size)
 {
-    int i;
-    for (i = 0; i < size; i++) {
+    for (int i = 0; i < size; i++)
         cout << arr[i] << " ";
-        cout << endl;
-    }
+    cout << endl;
 }
 
 int main()
 {
     int arr[] = { 64, 25, 12, 22, 11 };
+    cout << "Array before sorting : ";
+    for(int i : arr){
+        cout << i << " ";
+    }
     int n = sizeof(arr) / sizeof(arr[0]);
     selectionSort(arr, n);
-    cout << "Sorted array: \n";
+    cout << "\nArray after sorting : ";
     printArray(arr, n);
     return 0;
 }
