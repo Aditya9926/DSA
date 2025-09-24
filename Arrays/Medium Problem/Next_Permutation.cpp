@@ -18,7 +18,7 @@ void nextPermutation(vector<int> &nums)
     }
 
     for(int i = n-1; i > pivot; i--){
-        if(nums[i] > pivot){
+        if(nums[i] > nums[pivot]){
             swap(nums[i], nums[pivot]);
             break;
         }
@@ -33,7 +33,7 @@ void nextPermutation(vector<int> &nums)
 }
 
 int main(){
-    vector<int> arr = {1,1,5};
+    vector<int> arr = {2,3,1};
     nextPermutation(arr);
     for(int i : arr){
         cout << i << " ";
