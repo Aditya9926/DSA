@@ -55,7 +55,7 @@ DSA<br>
 ## 📈 Progress Tracking
 Topic              | Status
 --------------------|--------------
-Arrays             | Pending
+Arrays             | Completed
 Strings            | Pending
 Linked List        | Pending
 Stack & Queue      | Pending
