@@ -56,10 +56,10 @@ DSA<br>
 Topic              | Status
 --------------------|--------------
 Arrays             | Completed
-Strings            | Pending
+Strings            | Ongoing
 Linked List        | Pending
 Stack & Queue      | Pending
-Binary Trees       | Ongoing
+Binary Trees       | Pending
 Graphs             | Pending
 Dynamic Programming| Pending
 
