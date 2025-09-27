@@ -4,7 +4,7 @@
 using namespace std;
 
 int main(){
-    char str[] = {'H', 'e', 'l', 'l', 'o', '\0'};
+    char str[] = {'H', 'e', 'l', 'l', 'o', '\0'}; // Static in nature. Non modifiable.
     char str1[] = "Hello";
     int arr[] = {1, 2, 3, 4, 5};
 
@@ -38,6 +38,23 @@ int main(){
     cout << "Enter your name: ";
     cin >> str2; // Only reads input until the first whitespace
     cout << "Your name is: " << str2 << endl;
+
+    char str3[] = {"Aditya Sahu"};
+    int s = 0, e = strlen(str3) - 1;
+    while(s < e){
+        swap(str3[s], str3[e]);
+        s ++;
+        e --;
+    }
+    for(char ch : str3){
+        cout << ch << " ";
+    }
+    cout << endl;
+
+    for(int i = strlen(str3); i >= 0; i--){
+        cout << str3[i] << " ";
+    }
+    cout << endl;
 
     return 0;
 }
