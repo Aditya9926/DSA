@@ -1,10 +1,14 @@
 #include<iostream>
+#include<algorithm>
 using namespace std;
 
 int main (){
     string str;
     cout << "Your Enterd string is : " << str;
     getline(cin, str);
+
+    reverse(str.begin(),str.end());
+    cout << str << endl;
 
     for(int i = str.length(); i >= 0 ; i--){
         cout << str[i] << " ";
