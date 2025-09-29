@@ -10,12 +10,12 @@ bool searchmatrix(int matrix[][3], int row, int col, int tar){
             }
         }
     }
-    cout << "Element not found" << endl;
+    cout << "Element not found (-1,-1)" << endl;
     return false;
 }
 
 int main (){
     int mat[4][3] = {{1,2,3},{4,5,6},{10,11,12},{7,8,9}};
-    int row = 4, col = 3, tar = 8;
+    int row = 4, col = 3, tar = 12;
     searchmatrix(mat, row, col, tar);
 }
