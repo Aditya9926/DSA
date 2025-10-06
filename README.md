@@ -73,7 +73,7 @@ Dynamic Programming| Pending
 
 ## 🎯 Goals
 - Solve **500+ DSA problems** in C++.
-- Master **time & space complexity analysis**.
+- Master **Time & Space complexity analysis**.
 - Prepare for **FAANG & top tech company interviews**.
 
 ---
