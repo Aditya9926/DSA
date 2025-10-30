@@ -30,7 +30,7 @@ vector<int> MAR(vector<vector<int>> &grid)
 
 int main()
 {
-    vector<vector<int>> grid = {{1, 3}, {2, 2}};
+    vector<vector<int>> grid = {{1, 2, 3}, {7, 8, 9}, {4, 6, 9}};
     vector<int> result = MAR(grid);
     cout << "Repeated: " << result[0] << ", Missing: " << result[1] << endl;
     return 0;
