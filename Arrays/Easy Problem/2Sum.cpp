@@ -25,8 +25,6 @@ int main(){
     int tar = 9;
     cout << "The index is: ";
     vector<int> res = twosum(arr, tar); 
-    for(int i : res){
-        cout << i << " ";
-    }
+    cout << res[0] << "," << res[1] << endl;
     return 0;
 }
