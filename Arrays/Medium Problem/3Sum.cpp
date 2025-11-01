@@ -26,6 +26,26 @@ vector<vector<int>> threesumbru(vector<int> &arr){
     return ans;
 }
 
+// Better Approach.
+vector<vector<int>> threesumbet(vector<int> &arr){
+    set<vector<int>> uniquetri;
+    int n = arr.size();
+    for(int i = 0; i < n; i++){
+        set<int> s;
+        for(int j = i + 1; j < n; j++){
+            int tofind = -(arr[i] + arr[j]);
+            if(s.find(tofind) != s.end()){
+                vector<int> tri = {arr[i], arr[j], tofind};
+                sort(tri.begin(), tri.end());
+                uniquetri.insert(tri);
+            }
+            s.insert(arr[j]);
+        }
+    }
+    vector<vector<int>> ans(uniquetri.begin(), uniquetri.end());
+    return ans;
+}
+
 vector<vector<int>> threeSum(vector<int> &nums)
 {
     int n = nums.size();
@@ -64,7 +84,22 @@ int main()
 {
     vector<int> nums = {-1, 0, 1, 2, -1, -4};
     vector<vector<int>> resultbru = threesumbru(nums);
+    vector<vector<int>> resultbet = threesumbet(nums);
     vector<vector<int>> result = threeSum(nums);
+
+    for (const auto &tri : resultbru)
+    {
+        cout << "[";
+        for (size_t i = 0; i < tri.size(); ++i)
+        {
+            cout << tri[i];
+            if (i < tri.size() - 1)
+                cout << ", ";
+        }
+        cout << "] ";
+    }
+    cout << endl;
+
     for (const auto &triplet : result)
     {
         cout << "[";
@@ -78,13 +113,13 @@ int main()
     }
     cout << endl;
 
-    for (const auto &tri : resultbru)
+    for (const auto &triplet : resultbet)
     {
         cout << "[";
-        for (size_t i = 0; i < tri.size(); ++i)
+        for (size_t i = 0; i < triplet.size(); ++i)
         {
-            cout << tri[i];
-            if (i < tri.size() - 1)
+            cout << triplet[i];
+            if (i < triplet.size() - 1)
                 cout << ", ";
         }
         cout << "] ";
