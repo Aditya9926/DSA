@@ -46,6 +46,8 @@ vector<vector<int>> threesumbet(vector<int> &arr){
     return ans;
 }
 
+
+// Two pointer approach.
 vector<vector<int>> threeSum(vector<int> &nums)
 {
     int n = nums.size();
