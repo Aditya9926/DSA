@@ -2,7 +2,7 @@
 #include<vector>
 using namespace std;
 
-bool issorted(vector<int> n, int s){
+bool issorted(vector<int>& n, int s){
     if(s == 0 || s == 1){
         return true;
     }
@@ -10,7 +10,7 @@ bool issorted(vector<int> n, int s){
 }
 
 int main(){
-    vector<int> arr = {1,2,8,4,5};
+    vector<int> arr = {1,2,3,4,5};
     int n = arr.size();
     cout << issorted(arr,n);
 }
