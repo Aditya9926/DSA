@@ -44,7 +44,7 @@ class Teachers{
 
 int main(){
     Teachers t1("Aditya","C++","Computer Science",200000);
-    // t1.getinfo();
+    t1.getinfo();
     Teachers t2(t1); // Default copy constructor if don't add the copy constructor.
     t2.getinfo(); 
 }
