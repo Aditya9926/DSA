@@ -29,10 +29,13 @@ class Solution {
                 return NULL;
             }
             slow = head;
+            ListNode* prev = NULL;
             while(slow != fast){
                 slow = slow->next;
+                prev = fast;
                 fast = fast->next;
             }
+            prev->next = NULL; // Cycle removed.
             return slow;
         }
 };
@@ -42,7 +45,7 @@ int main(){
     Node->next = new ListNode(2);
     Node->next->next = new ListNode(0);
     Node->next->next->next = new ListNode(-4);
-    Node->next->next->next->next = Node->next; // Creating a cycle for testing
+    Node->next->next->next->next = Node->next;
 
     ListNode* head = Node;
     Solution solution;
