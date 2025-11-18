@@ -1,4 +1,5 @@
 #include<iostream>
+#include<unordered_map>
 using namespace std;
 
 class ListdNode{
@@ -20,39 +21,27 @@ class Solution{
                 return NULL;
             }
 
-            // Step 1: Create new nodes and insert them next to original nodes
-            ListdNode* curr = head;
-            while(curr != NULL){
-                ListdNode* newNode = new ListdNode(curr->data);
-                newNode->next = curr->next;
-                curr->next = newNode;
-                curr = newNode->next;
+            unordered_map<ListdNode*,ListdNode*> m;
+            ListdNode* newhead = new ListdNode(head->data);
+            ListdNode* oldtemp = head->next;
+            ListdNode* newtemp = newhead;
+            m[head] = newhead;
+
+            while(oldtemp != NULL){
+                ListdNode* copynode = new ListdNode(oldtemp->data);
+                m[oldtemp] = copynode;
+                newtemp->next = copynode;
+                oldtemp = oldtemp->next;
+                newtemp = newtemp->next;
             }
 
-            // Step 2: Assign random pointers to the new nodes
-            curr = head;
-            while(curr != NULL){
-                if(curr->random != NULL){
-                    curr->next->random = curr->random->next;
-                }
-                curr = curr->next->next;
+            oldtemp = head; newtemp = newhead;
+            while(oldtemp != NULL){
+                newtemp->random = m[oldtemp->random];
+                oldtemp = oldtemp->next;
+                newtemp = newtemp->next;
             }
-
-            // Step 3: Separate the two lists
-            curr = head;
-            ListdNode* newHead = head->next;
-            ListdNode* copyCurr = newHead;
-
-            while(curr != NULL){
-                curr->next = curr->next->next;
-                if(copyCurr->next != NULL){
-                    copyCurr->next = copyCurr->next->next;
-                }
-                curr = curr->next;
-                copyCurr = copyCurr->next;
-            }
-
-            return newHead;
+            return newhead;
         }
 };
 
