@@ -52,8 +52,10 @@ class circularqueue{
 
     int print(){
         for(int i=0; i<currsize; i++){
-            cout << arr[(f+i)%cap] << " ";
+            cout << arr[i] << " ";
         }
+        cout << endl;
+        return 0;
     }
 };
 
@@ -65,6 +67,13 @@ int main(){
     cout << q.front() << endl; // Output: 10
     q.pop();
     cout << q.front() << endl; // Output: 20
-    q.print(); // Output: 20 30
+    q.push(40);
+    q.push(50);
+    q.print(); // Output: 20 30 40 50
+
+    while(!q.empty()){
+        cout << q.front() << " ";
+        q.pop();
+    }
     return 0;
 }
