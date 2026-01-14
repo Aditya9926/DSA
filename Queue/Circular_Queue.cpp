@@ -50,12 +50,11 @@ class circularqueue{
         return currsize == 0;
     }
 
-    int print(){
-        for(int i=0; i<currsize; i++){
+    void print(){
+        for(int i=0; i<cap; i++){
             cout << arr[i] << " ";
         }
         cout << endl;
-        return 0;
     }
 };
 
@@ -64,16 +63,17 @@ int main(){
     q.push(10);
     q.push(20);
     q.push(30);
-    cout << q.front() << endl; // Output: 10
     q.pop();
-    cout << q.front() << endl; // Output: 20
     q.push(40);
     q.push(50);
-    q.print(); // Output: 20 30 40 50
+    q.pop();
+    q.print(); // Output : 10 20 30 40 50
+    q.push(60); // Should succeed as one element was popped
+    cout << "Front element: " << q.front() << endl; // Output: 30
 
     while(!q.empty()){
         cout << q.front() << " ";
         q.pop();
-    }
+    } 
     return 0;
 }
