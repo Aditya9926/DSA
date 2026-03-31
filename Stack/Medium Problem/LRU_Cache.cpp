@@ -6,7 +6,7 @@ class LRUCache {
 public:
 
     class Node{
-        public : 
+        public :
         int key, val;
         Node* prev;
         Node* next;
@@ -19,7 +19,7 @@ public:
     };
 
     Node* head = new Node(-1,-1);
-    Node* tail = new Node(-1,-1); 
+    Node* tail = new Node(-1,-1);
     unordered_map<int,Node*> m;
     int limit;
 
@@ -28,7 +28,7 @@ public:
         head->next = newnode;
         oldnext->prev = newnode;
         newnode->next = oldnext;
-        newnode->prev = head; 
+        newnode->prev = head;
     }
 
     void deletenode(Node* oldnode){
@@ -43,7 +43,19 @@ public:
         head->next = tail;
         tail->prev = head;
     }
-    
+
+    // Optimized: Added destructor to prevent memory leak
+    ~LRUCache() {
+        // Delete all nodes in the linked list
+        Node* curr = head;
+        while(curr != NULL) {
+            Node* next = curr->next;
+            delete curr;
+            curr = next;
+        }
+        // Map will be automatically destroyed
+    }
+
     int get(int key) {
         if(m.find(key) == m.end()){
             return -1;
@@ -60,16 +72,19 @@ public:
 
         return ans;
     }
-    
+
     void put(int key, int value) {
         if(m.find(key) != m.end()){
             Node* oldnode = m[key];
             deletenode(oldnode);
             m.erase(key);
+            delete oldnode;  // Free memory of replaced node
         }
         if(m.size() == limit){
-            m.erase(tail->prev->key);
-            deletenode(tail->prev);
+            Node* lru = tail->prev;
+            m.erase(lru->key);
+            deletenode(lru);
+            delete lru;  // Free memory of evicted node
         }
         Node* newnode = new Node(key, value);
         addnode(newnode);
@@ -91,6 +106,8 @@ int main(){
     cout << cache->get(1) << endl;    // returns -1 (not found)
     cout << cache->get(3) << endl;    // returns 3
     cout << cache->get(4) << endl;    // returns 4
+
+    delete cache;  // Properly clean up memory
 
     return 0;
 }

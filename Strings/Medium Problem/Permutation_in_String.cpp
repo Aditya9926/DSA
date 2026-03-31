@@ -13,23 +13,44 @@ public:
         return true;
     }
 
+    // Optimized: Proper sliding window with O(n) time complexity
+    // Time complexity: O(n) instead of O(n*m*26)
+    // Space complexity: O(1) - using fixed size arrays
     bool checkInclusion(string s1, string s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+
+        if(len1 > len2) return false;
+
+        // Build frequency map for s1
         int freq[26] = {0};
-        for(int i = 0; i < s1.length(); i++){
-            freq[s1[i] - 'a'] ++;
-        } 
-        int windsize = s1.size();
-        for(int j = 0; j < s2.size(); j++){
-            int windidx = 0,windfreq[26] = {}, idx = j;
-            while(windidx < windsize && idx < s2.size()){
-                windfreq[s2[idx] - 'a'] ++;
-                windidx ++;
-                idx ++;
-            }
-            if(isFreqSame(freq,windfreq)){
+        for(int i = 0; i < len1; i++){
+            freq[s1[i] - 'a']++;
+        }
+
+        // Build frequency map for first window in s2
+        int windfreq[26] = {0};
+        for(int i = 0; i < len1; i++){
+            windfreq[s2[i] - 'a']++;
+        }
+
+        // Check first window
+        if(isFreqSame(freq, windfreq)){
+            return true;
+        }
+
+        // Slide the window across s2
+        for(int i = len1; i < len2; i++){
+            // Add new character to window
+            windfreq[s2[i] - 'a']++;
+            // Remove leftmost character from window
+            windfreq[s2[i - len1] - 'a']--;
+
+            if(isFreqSame(freq, windfreq)){
                 return true;
             }
         }
+
         return false;
     }
 };
